@@ -1,0 +1,432 @@
+/* ═══════════════ BASE ═══════════════ */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cor-principal:   #c4623a;  /* laranja: topo e botões */
+  --cor-destaque:    #d4a843;  /* amarelo: avisos */
+  --cor-verde:       #8a9b6e;
+  --cor-fundo:       #fffbf4;  /* fundo do app */
+  --cor-texto:       #3d2b1f;  /* texto principal */
+  --cor-texto-suave: #7a5c4a;  /* textos secundários */
+  --cor-borda:       #e8d9c4;
+  --cor-campo:       #f2ead8;  /* fundo dos campos */
+  --cor-erro:        #b3261e;  /* mensagens de erro */
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: #e8d0b8;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 24px 16px;
+}
+
+#app {
+  background: #fffbf4;
+  width: 100%;
+  max-width: 420px;
+  min-height: 700px;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.18);
+}
+
+/* ═══════════════ TELAS ═══════════════ */
+.tela { display: none; }
+.tela.ativa { display: block; }
+
+/* ═══════════════ TOPO ═══════════════ */
+.topo {
+  background: #c4623a;
+  color: white;
+  padding: 32px 24px 28px;
+}
+.topo h1 {
+  font-size: 30px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+.topo p {
+  font-size: 17px;
+  margin-top: 6px;
+  opacity: 0.88;
+  font-weight: 600;
+}
+.topo .icone-topo {
+  font-size: 44px;
+  margin-bottom: 8px;
+}
+.btn-voltar {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-bottom: 10px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Nunito', sans-serif;
+}
+
+/* ═══════════════ CONTEÚDO ═══════════════ */
+.conteudo {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.pergunta-inicio {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+  color: #7a5c4a;
+  margin-bottom: 4px;
+}
+
+/* ═══════════════ BOTÕES PRINCIPAIS ═══════════════ */
+.btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  border-radius: 18px;
+  border: none;
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  text-align: left;
+  transition: transform 0.1s;
+}
+.btn:active { transform: scale(0.97); }
+.btn .icone { font-size: 38px; flex-shrink: 0; }
+.btn .texto-grande { font-size: 20px; font-weight: 800; display: block; }
+.btn .texto-pequeno { font-size: 15px; font-weight: 600; display: block; margin-top: 2px; }
+
+.btn-laranja { background: #c4623a; color: white; }
+.btn-laranja .texto-pequeno { opacity: 0.85; }
+
+.btn-amarelo { background: #d4a843; color: #3d2b1f; }
+.btn-amarelo .texto-pequeno { opacity: 0.75; }
+
+.btn-verde { background: #8a9b6e; color: white; }
+.btn-verde .texto-pequeno { opacity: 0.85; }
+
+/* ═══════════════ CARD ═══════════════ */
+.card {
+  background: white;
+  border: 2px solid #e8d9c4;
+  border-radius: 18px;
+  padding: 18px 20px;
+}
+.card-situacao { margin-top: 6px; }
+.card-sucesso { width: 100%; margin-bottom: 24px; }
+
+.card-titulo {
+  font-size: 12px;
+  font-weight: 800;
+  color: #7a5c4a;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 14px;
+}
+.card-linha {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #3d2b1f;
+}
+.card-linha:last-child { margin-bottom: 0; }
+.card-linha .ic { font-size: 24px; }
+
+/* ═══════════════ AVISO ═══════════════ */
+.aviso {
+  background: #fff8e8;
+  border: 2px solid #d4a843;
+  border-radius: 18px;
+  padding: 16px 18px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  font-size: 16px;
+  font-weight: 600;
+  color: #3d2b1f;
+  line-height: 1.5;
+}
+.aviso .ic { font-size: 22px; flex-shrink: 0; }
+
+/* ═══════════════ CONTATOS ═══════════════ */
+.contato {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  border-radius: 18px;
+  border: 2px solid #e8d9c4;
+  background: white;
+  cursor: pointer;
+  width: 100%;
+  font-family: 'Nunito', sans-serif;
+  text-align: left;
+  transition: transform 0.1s;
+}
+.contato:active { transform: scale(0.97); }
+.contato.selecionado { background: #c4623a; border-color: #c4623a; color: white; }
+.avatar {
+  width: 54px; height: 54px;
+  border-radius: 50%;
+  background: #f2ead8;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28px;
+  flex-shrink: 0;
+}
+.contato .nome { font-size: 19px; font-weight: 700; display: block; }
+.contato .tel { font-size: 15px; font-weight: 600; opacity: 0.7; display: block; margin-top: 2px; }
+.check {
+  margin-left: auto;
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: #f2ead8;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  font-weight: 800;
+  color: #c4623a;
+  flex-shrink: 0;
+}
+.contato.selecionado .check { background: white; }
+
+/* ═══════════════ RODAPÉ / BOTÕES DE AÇÃO ═══════════════ */
+.rodape {
+  padding: 16px 20px 28px;
+  background: white;
+  border-top: 2px solid #e8d9c4;
+}
+.rodape p {
+  text-align: center;
+  color: #7a5c4a;
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+.btn-confirmar {
+  width: 100%;
+  padding: 20px;
+  border-radius: 18px;
+  border: none;
+  font-family: 'Nunito', sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+.btn-confirmar:active { transform: scale(0.97); }
+.btn-confirmar.ativo { background: #c4623a; color: white; }
+.btn-confirmar.inativo { background: #e8d9c4; color: #7a5c4a; cursor: not-allowed; }
+.btn-largo { width: 100%; }
+
+.btn-secundario {
+  width: 100%;
+  padding: 16px;
+  border-radius: 18px;
+  border: none;
+  background: #f2ead8;
+  color: #7a5c4a;
+  font-family: 'Nunito', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: transform 0.1s;
+}
+.btn-secundario:active { transform: scale(0.97); }
+
+/* ═══════════════ HORÁRIO ═══════════════ */
+.horario-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 8px 0 6px;
+}
+.horario-row select {
+  font-size: 38px;
+  font-weight: 800;
+  color: #c4623a;
+  background: #f2ead8;
+  border: none;
+  border-radius: 14px;
+  padding: 10px 14px;
+  outline: none;
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  -webkit-appearance: none;
+  appearance: none;
+  text-align: center;
+}
+.horario-sep { font-size: 38px; font-weight: 800; color: #3d2b1f; }
+.horario-label { text-align: center; color: #7a5c4a; font-size: 16px; font-weight: 600; margin-top: 4px; }
+
+/* ═══════════════ FREQUÊNCIA ═══════════════ */
+.lista-frequencia {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.freq-btn {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  border-radius: 16px;
+  border: 2px solid #e8d9c4;
+  background: #fffbf4;
+  width: 100%;
+  font-family: 'Nunito', sans-serif;
+  font-size: 19px;
+  font-weight: 700;
+  cursor: pointer;
+  color: #3d2b1f;
+  transition: transform 0.1s;
+}
+.freq-btn:active { transform: scale(0.97); }
+.freq-btn.selecionado { background: #c4623a; border-color: #c4623a; color: white; }
+.freq-btn .ic { font-size: 28px; }
+.freq-btn .check-freq { margin-left: auto; font-size: 20px; }
+.check-freq.oculto { visibility: hidden; }
+
+/* ═══════════════ MENSAGEM ═══════════════ */
+textarea {
+  width: 100%;
+  font-family: 'Nunito', sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  color: #3d2b1f;
+  background: #f2ead8;
+  border: none;
+  border-radius: 14px;
+  padding: 14px 16px;
+  outline: none;
+  resize: none;
+  line-height: 1.6;
+}
+.char-count { font-size: 13px; color: #7a5c4a; font-weight: 600; margin-top: 6px; }
+
+/* ═══════════════ FIGURINHAS ═══════════════ */
+.sticker-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.sticker-btn {
+  aspect-ratio: 1;
+  border-radius: 18px;
+  border: 2px solid #e8d9c4;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  transition: transform 0.1s;
+  padding: 16px;
+}
+.sticker-btn:active { transform: scale(0.95); }
+.sticker-btn.selecionado { background: #c4623a; border-color: #c4623a; color: white; }
+.sticker-btn .sticker-emoji { font-size: 48px; }
+.sticker-btn .sticker-label { font-size: 15px; font-weight: 700; text-align: center; color: #3d2b1f; line-height: 1.3; }
+.sticker-btn.selecionado .sticker-label { color: white; }
+.sticker-check {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: white;
+  color: #c4623a;
+  font-size: 16px;
+  font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* ═══════════════ RESUMO (TELA CONFIRMAR) ═══════════════ */
+#resumo-figurinhas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.resumo-tag {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f2ead8;
+  border-radius: 12px;
+  padding: 8px 14px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #3d2b1f;
+}
+.resumo-tag .resumo-emoji { font-size: 22px; }
+
+/* ═══════════════ SUCESSO ═══════════════ */
+.sucesso {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px 32px;
+  text-align: center;
+  min-height: 700px;
+}
+.sucesso .grande-emoji { font-size: 80px; margin-bottom: 16px; }
+.sucesso h2 { font-size: 34px; font-weight: 800; color: #c4623a; margin-bottom: 12px; }
+.sucesso p { font-size: 18px; font-weight: 600; color: #3d2b1f; line-height: 1.6; margin-bottom: 8px; }
+.sucesso .detalhe { font-size: 16px; color: #7a5c4a; margin-bottom: 32px; }
+
+.login-caixa {
+ display: grid;
+}
+
+.usuario {
+  border-radius: 18px;
+  padding: 5px;
+  border: 1px solid #c4623a;
+  background: #f8efde;
+}
+
+.login-button {
+  border-radius: 15px;
+  border: 1px solid #c4623a;
+  padding: 6px;
+  cursor: pointer;
+  width: 180px;
+  background: #f8efde;
+}
+
+.div-button {
+  display: flex;
+  padding: 18px;
+}
+
+.op{
+  background: #c4623a;
+  padding: 18px;
+  border-radius: 19px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 8px 40px ;
+  flex-direction: column;
+}
+
+.ap {
+  display: flex;
+  align-items: center;
+  height: 580px;
+}
+

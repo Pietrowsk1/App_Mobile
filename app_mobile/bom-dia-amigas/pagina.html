@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bom Dia, Amigas!</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<div id="app">
+
+  <div id="tela-inicio" class="tela ativa">
+    <div class="topo">
+      <div class="icone-topo">🌸</div>
+      <h1>Bom Dia,<br>Amigas!</h1>
+      <p>Alegre o dia das suas amigas com carinho</p>
+    </div>
+    <div class="conteudo">
+      <p class="pergunta-inicio">O que você quer fazer hoje?</p>
+
+      <button class="btn btn-laranja" onclick="ir('tela-contatos')">
+        <span class="icone">👥</span>
+        <span>
+          <span class="texto-grande">Escolher Amigas</span>
+          <span class="texto-pequeno">Selecione quem vai receber</span>
+        </span>
+      </button>
+
+      <button class="btn btn-amarelo" onclick="ir('tela-horario')">
+        <span class="icone">⏰</span>
+        <span>
+          <span class="texto-grande">Programar Horário</span>
+          <span class="texto-pequeno">Configure quando enviar</span>
+        </span>
+      </button>
+
+      <button class="btn btn-verde" onclick="ir('tela-figurinhas')">
+        <span class="icone">🎨</span>
+        <span>
+          <span class="texto-grande">Escolher Figurinhas</span>
+          <span class="texto-pequeno">Pacotes bonitos para enviar</span>
+        </span>
+      </button>
+
+      <div class="card card-situacao">
+        <div class="card-titulo">Situação atual</div>
+        <div class="card-linha"><span class="ic">✅</span> Envio ativado</div>
+        <div class="card-linha"><span class="ic">👥</span> 3 amigas selecionadas</div>
+        <div class="card-linha"><span class="ic">⏰</span> Todo dia às 07h30</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ TELA: CONTATOS ═══════════════ -->
+  <div id="tela-contatos" class="tela">
+    <div class="topo">
+      <button class="btn-voltar" onclick="ir('tela-inicio')">← Voltar</button>
+      <h1>Escolha suas Amigas</h1>
+      <p>Toque no nome para selecionar</p>
+    </div>
+    <div class="conteudo" id="lista-contatos"></div>
+    <div class="rodape">
+      <p id="texto-contatos">Nenhuma amiga selecionada ainda</p>
+      <button id="btn-continuar-contatos" class="btn-confirmar inativo" onclick="continuar_contatos()">
+        Continuar →
+      </button>
+    </div>
+  </div>
+
+  <!-- ═══════════════ TELA: HORÁRIO ═══════════════ -->
+  <div id="tela-horario" class="tela">
+    <div class="topo">
+      <button class="btn-voltar" onclick="ir('tela-inicio')">← Voltar</button>
+      <h1>Programar Horário</h1>
+      <p>Quando enviar as mensagens?</p>
+    </div>
+    <div class="conteudo">
+
+      <div class="card">
+        <div class="card-titulo">Horário do envio</div>
+        <div class="horario-row">
+          <!-- As opções de hora (00–23) são geradas em js/app.js -->
+          <select id="sel-hora" onchange="atualizar_horario()"></select>
+          <span class="horario-sep">:</span>
+          <select id="sel-min" onchange="atualizar_horario()">
+            <option value="00">00</option>
+            <option value="15">15</option>
+            <option value="30" selected>30</option>
+            <option value="45">45</option>
+          </select>
+        </div>
+        <div class="horario-label" id="horario-label">Envio às 07:30 horas</div>
+      </div>
+
+      <div class="card">
+        <div class="card-titulo">Com que frequência?</div>
+        <div class="lista-frequencia">
+          <button class="freq-btn selecionado" id="freq-diario" onclick="sel_freq('diario')">
+            <span class="ic">📅</span> Todo dia
+            <span class="check-freq">✓</span>
+          </button>
+          <button class="freq-btn" id="freq-uteis" onclick="sel_freq('uteis')">
+            <span class="ic">💼</span> Dias úteis
+            <span class="check-freq oculto">✓</span>
+          </button>
+          <button class="freq-btn" id="freq-fds" onclick="sel_freq('fds')">
+            <span class="ic">🌴</span> Fins de semana
+            <span class="check-freq oculto">✓</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-titulo">Mensagem de bom dia</div>
+        <textarea id="mensagem-texto" rows="4" oninput="atualizar_chars()">Bom dia, minha querida! 🌸 Que Deus abençoe seu dia com muita alegria e saúde! ☀️</textarea>
+        <div class="char-count" id="char-count">82 caracteres</div>
+      </div>
+
+      <button class="btn-confirmar ativo" onclick="ir('tela-inicio')">Salvar horário ✅</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════ TELA: FIGURINHAS ═══════════════ -->
+  <div id="tela-figurinhas" class="tela">
+    <div class="topo">
+      <button class="btn-voltar" onclick="ir('tela-inicio')">← Voltar</button>
+      <h1>Escolher Figurinhas</h1>
+      <p>Selecione os pacotes que você gosta</p>
+    </div>
+    <div class="conteudo">
+      <div class="aviso">
+        <span class="ic">💡</span>
+        As figurinhas não se repetem por 2 meses! Você pode escolher mais de um pacote.
+      </div>
+      <div class="sticker-grid" id="grade-figurinhas"></div>
+    </div>
+    <div class="rodape">
+      <p id="texto-figurinhas">Nenhum pacote selecionado ainda</p>
+      <button id="btn-continuar-figurinhas" class="btn-confirmar inativo" onclick="ir('tela-confirmar')">
+        Continuar →
+      </button>
+    </div>
+  </div>
+
+  <!-- ═══════════════ TELA: CONFIRMAR ═══════════════ -->
+  <div id="tela-confirmar" class="tela">
+    <div class="topo">
+      <button class="btn-voltar" onclick="ir('tela-figurinhas')">← Voltar</button>
+      <h1>Confirmar Envio</h1>
+      <p>Revise tudo antes de confirmar</p>
+    </div>
+    <div class="conteudo">
+      <div class="card">
+        <div class="card-titulo">Amigas que vão receber</div>
+        <div id="resumo-contatos"></div>
+      </div>
+      <div class="card">
+        <div class="card-titulo">Horário e frequência</div>
+        <div class="card-linha"><span class="ic">⏰</span> Todo dia às 07:30 horas</div>
+        <div class="card-linha"><span class="ic">🔁</span> Figurinhas não se repetem por 2 meses</div>
+      </div>
+      <div class="card">
+        <div class="card-titulo">Pacotes de figurinhas</div>
+        <div id="resumo-figurinhas"></div>
+      </div>
+      <div class="aviso">
+        <span class="ic">ℹ️</span>
+        O aplicativo vai enviar automaticamente pelo WhatsApp no horário programado. Você não precisa fazer mais nada!
+      </div>
+      <button class="btn-confirmar ativo" onclick="ir('tela-sucesso')">✅ Confirmar e Ativar</button>
+      <button class="btn-secundario" onclick="ir('tela-figurinhas')">Voltar e Editar</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════ TELA: SUCESSO ═══════════════ -->
+  <div id="tela-sucesso" class="tela">
+    <div class="sucesso">
+      <div class="grande-emoji">🌸</div>
+      <h2>Tudo pronto!</h2>
+      <p>Suas amigas vão receber mensagens de bom dia todos os dias!</p>
+      <p class="detalhe">As figurinhas não vão se repetir por 2 meses. Que charme! ✨</p>
+
+      <div class="card card-sucesso">
+        <div class="card-linha"><span class="ic">✅</span> Envio automático ativado</div>
+        <div class="card-linha"><span class="ic">⏰</span> Todo dia às 07:30</div>
+        <div class="card-linha"><span class="ic">💌</span> Via WhatsApp</div>
+      </div>
+
+      <button class="btn-confirmar ativo btn-largo" onclick="ir('tela-inicio')">
+        Voltar ao início 🏠
+      </button>
+    </div>
+  </div>
+
+</div>
+
+<script src="js/app.js"></script>
+</body>
+</html>
